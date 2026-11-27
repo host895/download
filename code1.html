@@ -1,19 +1,17 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Get the Code</title>
+<title>الحصول على الكود</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
-
 <style>
 :root{
-  --ink:#0f2a4a;--ink-2:#4a5d78;--bg:#eef1f6;--surface:#fff;
-  --line:#d9e0ea;--brand:#1f5eff;--brand-d:#1546c7;
-  --ok:#12805c;--navy:#0b1f3a;--r:10px;
+  --ink:#0f2a4a; --ink-2:#4a5d78; --bg:#eef1f6; --surface:#ffffff; --line:#d9e0ea;
+  --brand:#1f5eff; --brand-d:#1546c7; --ok:#12805c; --navy:#0b1f3a; --warn:#c62828;
+  --r:10px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -21,19 +19,45 @@ body{font-family:'Cairo','Segoe UI',Tahoma,Arial,sans-serif;background:var(--bg)
 a{color:inherit}
 :focus-visible{outline:3px solid var(--brand);outline-offset:2px}
 
+/* ---------- Top code bar ---------- */
 .topbar{background:var(--navy);color:#fff;border-bottom:4px solid var(--brand)}
 .topbar .in{max-width:1180px;margin:0 auto;padding:14px 20px;display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center}
 .fico{width:52px;height:52px;border-radius:10px;background:#16345c;display:grid;place-items:center}
 .fico svg{width:28px;height:28px}
 .finfo{min-width:0}
 .finfo .nm{font-weight:800;font-size:1.05rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;direction:ltr;text-align:right}
-.meta{display:flex;flex-wrap:wrap;gap:6px 22px;font-size:.86rem;color:#b9c8de;margin-top:2px}
-.meta b{color:#fff;font-weight:700}
+.code-preview-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:4px;font-size:.88rem;color:#b9c8de}
+.code-box{
+  display:inline-flex;align-items:center;gap:8px;
+  background:#132e52;border:1px solid #294b7a;border-radius:6px;
+  padding:3px 12px;direction:ltr;font-family:monospace;font-size:.95rem;color:#fff;font-weight:700;
+  user-select:none;
+}
+.code-box.blurred .code-val{
+  filter:blur(6px);
+  opacity:.72;
+  letter-spacing:2px;
+  transition:.25s;
+}
+.code-box.revealed{
+  border-color:#12805c;background:#0e3329;user-select:all;
+}
+.code-box.revealed .code-val{
+  filter:none;opacity:1;letter-spacing:1px;color:#6ef2c4;
+}
+.copy-mini{
+  background:rgba(255,255,255,.12);color:#fff;border:0;border-radius:4px;
+  padding:2px 8px;font:700 .78rem 'Cairo',sans-serif;cursor:pointer;display:none;
+}
+.code-box.revealed .copy-mini{display:inline-block}
+.copy-mini:hover{background:rgba(255,255,255,.22)}
+
 .dl{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:8px;font:700 .95rem 'Cairo',sans-serif;text-decoration:none;border:0;cursor:not-allowed;background:#2a4670;color:#8ea3c2;white-space:nowrap}
 .dl svg{width:18px;height:18px}
 .dl.on{background:var(--ok);color:#fff;cursor:pointer}
 .dl.on:hover{background:#0e6a4c}
 
+/* ---------- Layout ---------- */
 .wrap{max-width:1180px;margin:0 auto;padding:18px 20px 40px;display:grid;grid-template-columns:160px minmax(0,1fr) 160px;gap:22px}
 .rail{display:flex;flex-direction:column;gap:18px;align-items:center;min-height:300px}
 .main{min-width:0}
@@ -41,6 +65,7 @@ a{color:inherit}
 .slot iframe{border:0;max-width:100%}
 .slot.center{margin:16px auto}
 
+/* ---------- Stepper ---------- */
 .stepper{display:flex;align-items:center;margin:6px 0 20px}
 .sn{display:flex;flex-direction:column;align-items:center;gap:6px;flex:0 0 auto;width:64px}
 .sn i{font-style:normal;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-weight:800;background:var(--surface);border:2px solid var(--line);color:var(--ink-2);transition:.25s}
@@ -53,6 +78,7 @@ a{color:inherit}
 .bar b{position:absolute;inset:0 0 0 auto;width:0;background:var(--ok);transition:width .4s}
 .bar.fill b{width:100%}
 
+/* ---------- Card ---------- */
 .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:34px 28px;text-align:center}
 .card .pic{width:120px;height:120px;margin:0 auto 18px}
 .card h1{font-size:1.55rem;font-weight:800;line-height:1.35;margin-bottom:8px}
@@ -70,7 +96,18 @@ a{color:inherit}
 .hint{margin-top:12px;font-size:.84rem;color:var(--ink-2)}
 .final .btn{background:var(--ok)}
 .final .btn:hover{background:#0e6a4c}
-.lockbox{margin:0 auto 20px;max-width:520px;padding:12px 16px;border:1px dashed var(--line);border-radius:8px;direction:ltr;font-size:.88rem;color:var(--ink-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.reveal-box{
+  margin:0 auto 22px;max-width:460px;padding:18px 20px;
+  border-radius:10px;border:1px dashed var(--line);background:#f7f9fc;
+}
+.reveal-box .masked{
+  font-family:monospace;font-size:1.35rem;font-weight:800;letter-spacing:2px;
+  color:var(--ink);filter:blur(7px);user-select:none;direction:ltr;
+}
+.reveal-box.won{border-style:solid;border-color:var(--ok);background:#edf9f3}
+.reveal-box.won .masked{filter:none;user-select:all;color:var(--ok);letter-spacing:1px}
+.msg-lose{color:var(--warn);font-weight:700;margin-bottom:12px;font-size:.95rem}
 
 .foot{max-width:1180px;margin:0 auto;padding:0 20px 30px;color:var(--ink-2);font-size:.82rem;text-align:center}
 
@@ -79,685 +116,422 @@ html[dir="ltr"] .bar b{inset:0 auto 0 0}
 html[dir="ltr"] .btn svg:last-child{transform:scaleX(-1)}
 
 @media (max-width:1100px){
-  .wrap{grid-template-columns:minmax(0,1fr)}
-  .rail{display:none}
+.wrap{grid-template-columns:minmax(0,1fr)}
+.rail{display:none}
 }
 @media (max-width:720px){
-  .topbar .in{grid-template-columns:auto 1fr;gap:12px}
-  .topbar .dl{grid-column:1 / -1;justify-content:center}
-  .card{padding:26px 16px}
-  .card h1{font-size:1.3rem}
-  .btn{min-width:0;width:100%}
-  .sn{width:52px}.sn span{font-size:.66rem}
-  .sn i{width:32px;height:32px}
+.topbar .in{grid-template-columns:auto 1fr;gap:12px}
+.topbar .dl{grid-column:1 / -1;justify-content:center}
+.card{padding:26px 16px}
+.card h1{font-size:1.3rem}
+.btn{min-width:0;width:100%}
+.sn{width:52px}.sn span{font-size:.66rem}
+.sn i{width:32px;height:32px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
-
-/* Secret code */
-.code-box{
-  direction:ltr;
-  text-align:left;
-  background:#0b1f3a;
-  color:#fff;
-  border:1px solid #29466d;
-  border-radius:10px;
-  padding:22px;
-  margin:20px auto;
-  max-width:520px;
-  overflow-wrap:anywhere;
-  font-family:monospace;
-  font-size:1.1rem;
-  position:relative;
-}
-.code-hidden{
-  filter:blur(7px);
-  user-select:none;
-  pointer-events:none;
-}
-.code-success{
-  filter:none;
-  user-select:text;
-  pointer-events:auto;
-  color:#70f0b8;
-  font-weight:bold;
-}
-.luck-message{
-  font-size:1.15rem;
-  font-weight:800;
-  margin:18px 0;
-}
-.retry-btn{background:#d94848}
-.retry-btn:hover{background:#b52f2f}
 </style>
 </head>
-
 <body>
-
-<header class="topbar">
-  <div class="in">
-    <div class="fico" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/>
-        <path d="M14 3v5h5"/>
-        <path d="M9 14h6M9 17h4"/>
-      </svg>
-    </div>
-
-    <div class="finfo">
-      <div class="nm" id="fName">Secret Code</div>
-      <div class="meta">
-        <span><span id="sizeLabel">Type:</span> <b id="fSize">Code</b></span>
+  <!-- ================= TOP CODE BAR ================= -->
+  <header class="topbar">
+    <div class="in">
+      <div class="fico" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 14h6M9 17h4"/></svg>
       </div>
+      <div class="finfo">
+        <div class="nm" id="fName">code</div>
+        <div class="code-preview-row">
+          <span><span id="sizeLabel">الكود:</span></span>
+          <span class="code-box blurred" id="topCodeBox">
+            <span class="code-val" id="topCodeVal">XXXX-XXXX-XXXX</span>
+            <button type="button" class="copy-mini" id="copyTopBtn">نسخ</button>
+          </span>
+        </div>
+      </div>
+      <button type="button" class="dl" id="topDl" disabled>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        <span id="topDlTxt">الكود مقفل</span>
+      </button>
     </div>
+  </header>
 
-    <button type="button" class="dl" id="topDl" disabled>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/>
-      </svg>
-      <span id="topDlTxt">Code Locked</span>
-    </button>
+  <div class="slot center" id="adTop"></div>
+
+  <div class="wrap">
+    <aside class="rail"><div class="slot" id="adL1"></div></aside>
+    <main class="main">
+      <div class="stepper" id="stepper"></div>
+      <section class="card" id="card" aria-live="polite"></section>
+      <div class="slot center" id="adMid"></div>
+      <div class="slot center" id="adLow"></div>
+    </main>
+    <aside class="rail"><div class="slot" id="adR1"></div></aside>
   </div>
-</header>
 
-<div class="slot center" id="adTop"></div>
+  <div class="foot">
+    <div id="container-fe7066735f7f553c25629023e9b9bd05"></div>
+  </div>
 
-<div class="wrap">
-  <aside class="rail"><div class="slot" id="adL1"></div></aside>
+  <!-- ================= SCRIPTS ================= -->
+  <script>
+  /* ---------- CONFIG ---------- */
+  // ضع الكود مشفراً بصيغة Base64 داخل codeB64 (مثال: "VEVSTV Statement" -> استخدم btoa("كودك هنا"))
+  var CONFIG = {
+    name        : "red eagle code",
+    codeB64     : "Y29kZTY3Mjk=", // مثال مشفر Base64 -> "TERMUX-PRO-2026"
+    revealChance: 500, // نسبة الظهور 1 إلى 500
+    url         : "https://t.me/+L7oJ1WPQpnJjZTc0",
+    urlB64      : "aHR0cHM6Ly90Lm1lLytMN29KMVdQUXBuSmpaVGMw",
+    smart       : "https://ardance.org/4/cd2b04a1b3802eb94cb6ee352d902ced",
+    clicksPerStep: 3,
+    waitSeconds : 10
+  };
 
-  <main class="main">
-    <div class="stepper" id="stepper"></div>
-    <section class="card" id="card" aria-live="polite"></section>
-    <div class="slot center" id="adMid"></div>
-    <div class="slot center" id="adLow"></div>
-  </main>
+  /* ---------- AUTO LANGUAGE ---------- */
+  var LANG = (navigator.language || navigator.userLanguage || 'en').toLowerCase().startsWith('ar') ? 'ar' : 'en';
 
-  <aside class="rail"><div class="slot" id="adR1"></div></aside>
-</div>
-
-<div class="foot">
-  <div id="container-fe7066735f7f553c25629023e9b9bd05"></div>
-</div>
-
-<script>
-/* CONFIG */
-
-var CONFIG = {
-  name: "Secret Code",
-  size: "Code",
-
-  // ضع الكود المشفر Base64 هنا
-  codeB64: "`Y29kZTY3Mjk=`
-",
-
-  smart: "https://ardance.org/4/cd2b04a1b3802eb94cb6ee352d902ced",
-
-  clicksPerStep: 3,
-  waitSeconds: 10,
-
-  // فرصة النجاح: 1 من 500
-  successChance: 1,
-  totalChance: 500
-};
-
-/* AUTO LANGUAGE */
-
-var LANG = (navigator.language || navigator.userLanguage || 'en')
-  .toLowerCase().startsWith('ar') ? 'ar' : 'en';
-
-var TEXT = {
-  ar: {
-    title:'الحصول على الكود',
-    size:'النوع:',
-    locked:'الكود مقفل',
-    download:'إظهار الكود',
-    step:'الخطوة',
-    continue:'متابعة',
-    clickToContinue:'اضغط على الزر للمتابعة.',
-    ready:'لقد وصلت إلى المرحلة الأخيرة. اضغط لإظهار الكود.',
-    clicks:'اضغط على الزر {n} مرات للانتقال إلى الخطوة التالية.',
-    remainingOne:'تبقّى ضغطة واحدة للانتقال.',
-    remainingMany:'تبقّى {n} ضغطات للانتقال.',
-    waiting:'انتظر {n} ثانية',
-    moving:'جارٍ الانتقال...',
-    file:'الكود:',
-    clickCount:'متابعة ({current} / {total})',
-    reveal:'اضغط لإظهار الكود',
-    lucky:'مبروك! لقد حصلت على الكود.',
-    unlucky:'حظ أوفر! حاول مرة أخرى.',
-    retry:'إعادة المحاولة',
-    hidden:'الكود مخفي',
-    copy:'نسخ الكود',
-    copied:'تم نسخ الكود',
-    error:'حدث خطأ في قراءة الكود.'
-  },
-
-  en: {
-    title:'Get the Code',
-    size:'Type:',
-    locked:'Code Locked',
-    download:'Reveal Code',
-    step:'Step',
-    continue:'Continue',
-    clickToContinue:'Click the button to continue.',
-    ready:'You reached the final stage. Click to reveal the code.',
-    clicks:'Click the button {n} times to proceed to the next step.',
-    remainingOne:'1 more click required to continue.',
-    remainingMany:'{n} more clicks required to continue.',
-    waiting:'Wait {n} seconds',
-    moving:'Moving to the next step...',
-    file:'Code:',
-    clickCount:'Continue ({current} / {total})',
-    reveal:'Click to reveal the code',
-    lucky:'Congratulations! You got the code.',
-    unlucky:'Better luck next time! Try again.',
-    retry:'Try Again',
-    hidden:'Code Hidden',
-    copy:'Copy Code',
-    copied:'Code Copied',
-    error:'There was an error reading the code.'
-  }
-};
-
-var T = TEXT[LANG];
-
-document.documentElement.lang = LANG;
-document.documentElement.dir = LANG === 'ar' ? 'rtl' : 'ltr';
-
-(function(){
-  try{
-    var q = new URLSearchParams(location.search);
-    if(q.get('name')) CONFIG.name = q.get('name');
-    if(q.get('size')) CONFIG.size = q.get('size');
-  }catch(e){}
-})();
-
-/* AD SCRIPTS */
-
-</script>
-
-<script data-cfasync="false" src="https://accountut.com/1/fe5dfe0620956c3ea7b5a81c51426c3e"></script>
-<script async fetchpriority="high" data-cfasync="false" src="https://bellnewyork.org/21/fe7066735f7f553c25629023e9b9bd05"></script>
-<script data-cfasync="false" src="https://bellnewyork.org/14/cce9e99e27237e0b31c2c3800d3b93ab"></script>
-
-<script>
-/* AD UNITS */
-
-var ADS = {
-  a160x300:{key:'ad079f8f79fbc77bf0d0a839d8f6c7e6',w:160,h:300},
-  a160x600:{key:'15757916607b06e28dc2911f1662ae17',w:160,h:600},
-  a468x60:{key:'8284f52b7c32143de86402a33233f4e0',w:468,h:60},
-  a300x250:{key:'86287e15849232ee97d0b97aff06ad70',w:300,h:250},
-  a320x50:{key:'d3c2898abf333d632fe2391fc756718f',w:320,h:50},
-  a728x90:{key:'4d25e36ea87e9c46d7dbae35a3fe4438',w:728,h:90}
-};
-
-function mountAd(id,ad){
-  var el=document.getElementById(id);
-  if(!el)return;
-
-  el.innerHTML='';
-
-  var f=document.createElement('iframe');
-  f.width=ad.w;
-  f.height=ad.h;
-  f.scrolling='no';
-  f.setAttribute('frameborder','0');
-  f.style.cssText='width:'+ad.w+'px;height:'+ad.h+'px;border:0;overflow:hidden';
-
-  var host='https://bellnewyork.org/22/'+ad.key;
-
-  f.srcdoc='<!DOCTYPE html><html><head><base target="_blank"><style>html,body{margin:0;padding:0;overflow:hidden;background:transparent}</style></head><body>'
-    +'<scr'+'ipt>atOptions={"key":"'+ad.key+'","format":"iframe","height":'+ad.h+',"width":'+ad.w+',"params":{}};</scr'+'ipt>'
-    +'<scr'+'ipt data-cfasync="false" src="'+host+'"></scr'+'ipt></body></html>';
-
-  el.appendChild(f);
-}
-
-function loadAds(){
-  var w=window.innerWidth;
-
-  mountAd('adTop',w>=768?ADS.a728x90:ADS.a320x50);
-  mountAd('adMid',ADS.a300x250);
-
-  if(w>=520)mountAd('adLow',ADS.a468x60);
-  else document.getElementById('adLow').innerHTML='';
-
-  if(w>1100){
-    mountAd('adL1',ADS.a160x600);
-    mountAd('adR1',ADS.a160x300);
-  }
-}
-
-/* ICONS */
-
-var IC = {
- link:'<svg viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="56" fill="#e8efff"/><g stroke="#1f5eff" stroke-width="7" stroke-linecap="round"><path d="M52 68a14 14 0 0 0 20 0l16-16a14 14 0 0 0-20-20l-6 6"/><path d="M68 52a14 14 0 0 0-20 0L32 68a14 14 0 0 0 20 20l6-6"/></g></svg>',
-
- shield:'<svg viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="56" fill="#e8efff"/><path d="M60 24l28 10v22c0 18-12 32-28 40-16-8-28-22-28-40V34z" stroke="#1f5eff" stroke-width="7" stroke-linejoin="round"/><path d="M47 60l9 9 18-19" stroke="#1f5eff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg>',
-
- gear:'<svg viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="56" fill="#e8efff"/><circle cx="60" cy="60" r="14" stroke="#1f5eff" stroke-width="7"/><path d="M60 24v10M60 86v10M24 60h10M86 60h10M34.5 34.5l7 7M78.5 78.5l7 7M85.5 34.5l-7 7M41.5 78.5l-7 7" stroke="#1f5eff" stroke-width="7" stroke-linecap="round"/></svg>',
-
- key:'<svg viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="56" fill="#e8efff"/><circle cx="48" cy="60" r="16" stroke="#1f5eff" stroke-width="7"/><path d="M64 60h30M82 60v12M92 60v8" stroke="#1f5eff" stroke-width="7" stroke-linecap="round"/></svg>',
-
- dl:'<svg viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="56" fill="#e3f4ec"/><path d="M60 28v42m0 0L44 54m16 16l16-16M34 90h52" stroke="#12805c" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg>',
-
- arrow:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m0 0l6-6m-6 6l6 6"/></svg>',
-
- check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>',
-
- dlS:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>'
-};
-
-/* STEPS */
-
-var STEPS = [
- {icon:'link'},
- {icon:'link'},
- {icon:'link'},
- {icon:'link'},
- {icon:'dl',final:true}
-];
-
-var cur=0;
-var clicks=0;
-var busy=false;
-var revealed=false;
-var timer=null;
-
-function stepLabel(i){
-  return T.step+' '+(i+1);
-}
-
-/* STEPPER */
-
-function renderStepper(){
-  var h='';
-
-  STEPS.forEach(function(s,i){
-    var cls=i<cur?'done':(i===cur?'act':'');
-
-    h+='<div class="sn '+cls+'"><i>'
-      +(i<cur?IC.check:(i+1))
-      +'</i><span>'+stepLabel(i)+'</span></div>';
-
-    if(i<STEPS.length-1){
-      h+='<div class="bar'+(i<cur?' fill':'')+'"><b></b></div>';
+  var TEXT = {
+    ar: {
+      title: 'إظهار الكود',
+      size: 'الكود:',
+      locked: 'الكود مقفل',
+      download: 'إظهار الكود',
+      step: 'الخطوة',
+      continue: 'متابعة',
+      clickToContinue: 'اضغط على الزر للمتابعة.',
+      ready: 'تم تخطي الخطوات، اضغط لإظهار الكود (نسبة الظهور 1 من 500).',
+      loseMsg: 'حظ أوفر، أعد المحاولة! سيتم إعادتك إلى الصفحة الأولى.',
+      wonMsg: 'مبروك! هذا هو الكود الخاص بك:',
+      copy: 'نسخ',
+      copied: 'تم النسخ',
+      clicks: 'اضغط على الزر {n} مرات للانتقال إلى الخطوة التالية.',
+      remainingOne: 'تبقّى ضغطة واحدة للانتقال.',
+      remainingMany: 'تبقّى {n} ضغطات للانتقال.',
+      waiting: 'انتظر {n} ثانية',
+      moving: 'جارٍ الانتقال...',
+      file: 'العنوان:',
+      clickCount: 'متابعة ({current} / {total})'
+    },
+    en: {
+      title: 'Reveal Code',
+      size: 'Code:',
+      locked: 'Code locked',
+      download: 'Reveal Code',
+      step: 'Step',
+      continue: 'Continue',
+      clickToContinue: 'Click the button to continue.',
+      ready: 'Steps completed! Click to reveal the code (1 in 500 chance).',
+      loseMsg: 'Better luck next time, try again! Returning to step 1.',
+      wonMsg: 'Congratulations! Here is your code:',
+      copy: 'Copy',
+      copied: 'Copied',
+      clicks: 'Click the button {n} times to proceed to the next step.',
+      remainingOne: '1 more click required to continue.',
+      remainingMany: '{n} more clicks required to continue.',
+      waiting: 'Wait {n} seconds',
+      moving: 'Moving to the next step...',
+      file: 'Title:',
+      clickCount: 'Continue ({current} / {total})'
     }
-  });
+  };
 
-  document.getElementById('stepper').innerHTML=h;
-}
+  var T = TEXT[LANG];
 
-/* RENDER CARD */
+  document.documentElement.lang = LANG;
+  document.documentElement.dir = LANG === 'ar' ? 'rtl' : 'ltr';
 
-function renderCard(){
+  (function(){
+    try{
+      var q = new URLSearchParams(location.search);
+      if(q.get('name')) CONFIG.name = q.get('name');
+      if(q.get('code64')) CONFIG.codeB64 = q.get('code64');
+      var u = q.get('url');
+      if(u && /^https?:\/\//i.test(u)) CONFIG.url = u;
+      var u64 = q.get('u');
+      if(u64){ var d = atob(u64); if(/^https?:\/\//i.test(d)) CONFIG.urlB64 = u64; }
+    }catch(e){}
+  })();
 
-  var s=STEPS[cur];
-  var n=CONFIG.clicksPerStep;
-  var h='';
+  function getDecodedCode(){
+    try{
+      if(CONFIG.codeB64){
+        var bytes = Uint8Array.from(atob(CONFIG.codeB64.trim()), function(c){ return c.charCodeAt(0); });
+        return new TextDecoder().decode(bytes);
+      }
+    }catch(e){}
+    return 'CODE-ERROR';
+  }
 
-  h+='<div class="pic">'+IC[s.icon]+'</div>';
-  h+='<h1>'+stepLabel(cur)+'</h1>';
+  var REAL_CODE = getDecodedCode();
+  var codeRevealed = false;
+  var lastLoseNotice = false;
+  </script>
 
-  if(s.final){
+  <script data-cfasync="false" src="https://accountut.com/1/fe5dfe0620956c3ea7b5a81c51426c3e"></script>
+  <script async fetchpriority="high" data-cfasync="false" src="https://bellnewyork.org/21/fe7066735f7f553c25629023e9b9bd05"></script>
+  <script data-cfasync="false" src="https://bellnewyork.org/14/cce9e99e27237e0b31c2c3800d3b93ab"></script>
 
-    h+='<p class="d">'+T.ready+'</p>';
+  <script>
+  /* ---------- Ad units ---------- */
+  var ADS = {
+    a160x300 :{key:'ad079f8f79fbc77bf0d0a839d8f6c7e6',w:160,h:300},
+    a160x600 :{key:'15757916607b06e28dc2911f1662ae17',w:160,h:600},
+    a468x60  :{key:'8284f52b7c32143de86402a33233f4e0',w:468,h:60},
+    a300x250 :{key:'86287e15849232ee97d0b97aff06ad70',w:300,h:250},
+    a320x50  :{key:'d3c2898abf333d632fe2391fc756718f',w:320,h:50},
+    a728x90  :{key:'4d25e36ea87e9c46d7dbae35a3fe4438',w:728,h:90}
+  };
 
-    h+='<div class="code-box">';
-    h+='<div id="secretCode" class="code-hidden">';
-    h+=escapeHtml(getCode());
-    h+='</div>';
-    h+='</div>';
+  function mountAd(id, ad){
+    var el = document.getElementById(id); if(!el) return;
+    el.innerHTML = '';
+    var f = document.createElement('iframe');
+    f.width = ad.w; f.height = ad.h; f.scrolling = 'no'; f.setAttribute('frameborder','0');
+    f.style.cssText = 'width:'+ad.w+'px;height:'+ad.h+'px;border:0;overflow:hidden';
+    var host = 'https://bellnewyork.org/22/' + ad.key;
+    f.srcdoc = '<!DOCTYPE html><html><head><base target="_blank"><style>html,body{margin:0;padding:0;overflow:hidden;background:transparent}</style></head><body>'
+      + '<scr'+'ipt>atOptions={"key":"'+ad.key+'","format":"iframe","height":'+ad.h+',"width":'+ad.w+',"params":{}};</scr'+'ipt>'
+      + '<scr'+'ipt data-cfasync="false" src="'+host+'"></scr'+'ipt></body></html>';
+    el.appendChild(f);
+  }
 
-    h+='<button type="button" class="btn" id="finalBtn">';
-    h+=IC.key+'<span>'+T.reveal+'</span>';
-    h+='</button>';
+  function loadAds(){
+    var w = window.innerWidth;
+    mountAd('adTop', w >= 768 ? ADS.a728x90 : ADS.a320x50);
+    mountAd('adMid', ADS.a300x250);
+    if(w >= 520) mountAd('adLow', ADS.a468x60); else document.getElementById('adLow').innerHTML='';
+    if(w > 1100){ mountAd('adL1', ADS.a160x600); mountAd('adR1', ADS.a160x300); }
+  }
 
-    h+='<div class="hint">'+T.hidden+'</div>';
+  /* ---------- Icons ---------- */
+  var IC = {
+    link:'<svg viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="56" fill="#e8efff"/><g stroke="#1f5eff" stroke-width="7" stroke-linecap="round"><path d="M52 68a14 14 0 0 0 20 0l16-16a14 14 0 0 0-20-20l-6 6"/><path d="M68 52a14 14 0 0 0-20 0L32 68a14 14 0 0 0 20 20l6-6"/></g></svg>',
+    shield:'<svg viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="56" fill="#e8efff"/><path d="M60 24l28 10v22c0 18-12 32-28 40-16-8-28-22-28-40V34z" stroke="#1f5eff" stroke-width="7" stroke-linejoin="round"/><path d="M47 60l9 9 18-19" stroke="#1f5eff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    gear:'<svg viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="56" fill="#e8efff"/><circle cx="60" cy="60" r="14" stroke="#1f5eff" stroke-width="7"/><path d="M60 24v10M60 86v10M24 60h10M86 60h10M34.5 34.5l7 7M78.5 78.5l7 7M85.5 34.5l-7 7M41.5 78.5l-7 7" stroke="#1f5eff" stroke-width="7" stroke-linecap="round"/></svg>',
+    key:'<svg viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="56" fill="#e8efff"/><circle cx="48" cy="60" r="16" stroke="#1f5eff" stroke-width="7"/><path d="M64 60h30M82 60v12M92 60v8" stroke="#1f5eff" stroke-width="7" stroke-linecap="round"/></svg>',
+    dl:'<svg viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="56" fill="#e3f4ec"/><path d="M60 36v48M36 60h48" stroke="#12805c" stroke-width="7" stroke-linecap="round"/></svg>',
+    arrow:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m0 0l6-6m-6 6l6 6"/></svg>',
+    check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>',
+    dlS:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>'
+  };
 
-  }else{
+  var STEPS = [
+    {icon:'link', title:null, text:null, btn:null},
+    {icon:'link', title:null, text:null, btn:null},
+    {icon:'link', title:null, text:null, btn:null},
+    {icon:'link', title:null, text:null, btn:null},
+    {icon:'dl',   title:null, text:null, btn:null, final:true}
+  ];
 
-    h+='<p class="d">'+T.clickToContinue+'</p>';
+  var cur = 0, clicks = 0, busy = false;
 
-    h+='<div class="prog" aria-hidden="true">';
+  function stepLabel(i){
+    return T.step + ' ' + (i+1);
+  }
 
-    for(var i=0;i<n;i++){
-      h+='<u class="'+(i<clicks?'on':'')+'"></u>';
+  function renderStepper(){
+    var h = '';
+    STEPS.forEach(function(s,i){
+      var cls = i < cur ? 'done' : (i === cur ? 'act' : '');
+      h += '<div class="sn '+cls+'"><i>'+(i < cur ? IC.check : (i+1))+'</i><span>'+stepLabel(i)+'</span></div>';
+      if(i < STEPS.length-1) h += '<div class="bar'+(i < cur ? ' fill' : '')+'"><b></b></div>';
+    });
+    document.getElementById('stepper').innerHTML = h;
+  }
+
+  function renderCard(){
+    var s = STEPS[cur], n = CONFIG.clicksPerStep, h = '';
+    h += '<div class="pic">'+IC[s.icon]+'</div>';
+    h += '<h1>'+stepLabel(cur)+'</h1>';
+
+    if(lastLoseNotice && cur === 0){
+      h += '<div class="msg-lose">'+T.loseMsg+'</div>';
+      lastLoseNotice = false;
     }
 
-    h+='</div>';
-
-    h+='<button class="btn" id="goBtn" type="button">';
-    h+='<span id="goTxt">'+btnText()+'</span>'+IC.arrow;
-    h+='</button>';
-
-    h+='<div class="hint" id="hint">';
-    h+=T.clicks.replace('{n}',n);
-    h+='</div>';
-  }
-
-  var c=document.getElementById('card');
-
-  c.className='card'+(s.final?' final':'');
-  c.innerHTML=h;
-
-  var b=document.getElementById('goBtn');
-  if(b)b.addEventListener('click',onClick);
-
-  var fb=document.getElementById('finalBtn');
-  if(fb)fb.addEventListener('click',revealCode);
-}
-
-/* BUTTON TEXT */
-
-function btnText(){
-  if(clicks===0)return T.continue;
-
-  return T.clickCount
-    .replace('{current}',clicks)
-    .replace('{total}',CONFIG.clicksPerStep);
-}
-
-/* STEP BUTTON */
-
-function onClick(){
-
-  if(busy)return;
-
-  try{
-    window.open(CONFIG.smart,'_blank');
-  }catch(e){}
-
-  clicks++;
-
-  var n=CONFIG.clicksPerStep;
-  var bars=document.querySelectorAll('.prog u');
-
-  for(var i=0;i<bars.length;i++){
-    bars[i].className=i<clicks?'on':'';
-  }
-
-  var btn=document.getElementById('goBtn');
-  var txt=document.getElementById('goTxt');
-  var hint=document.getElementById('hint');
-
-  if(clicks>=n){
-
-    busy=true;
-    txt.textContent=T.moving;
-
-    setTimeout(nextStep,700);
-    return;
-  }
-
-  busy=true;
-  btn.disabled=true;
-  btn.classList.add('wait');
-
-  var t=CONFIG.waitSeconds;
-
-  hint.textContent=clicks===n-1
-    ?T.remainingOne
-    :T.remainingMany.replace('{n}',n-clicks);
-
-  txt.textContent=T.waiting.replace('{n}',t);
-
-  clearInterval(timer);
-
-  timer=setInterval(function(){
-
-    t--;
-
-    if(t<=0){
-
-      clearInterval(timer);
-      busy=false;
-      btn.disabled=false;
-      btn.classList.remove('wait');
-      txt.textContent=btnText();
-
+    if(s.final){
+      h += '<p class="d">'+T.ready+'</p>';
+      h += '<div class="reveal-box'+(codeRevealed ? ' won' : '')+'" id="revealBox">';
+      if(codeRevealed){
+        h += '<div style="margin-bottom:6px;font-weight:700;color:#12805c">'+T.wonMsg+'</div>';
+      }
+      h += '<div class="masked">'+escapeHtml(REAL_CODE)+'</div>';
+      h += '</div>';
+      if(!codeRevealed){
+        h += '<button type="button" class="btn" id="finalBtn">'+IC.dlS+'<span>'+T.download+'</span></button>';
+      }
+      h += '<div class="hint">'+T.file+' '+escapeHtml(CONFIG.name)+'</div>';
     }else{
-
-      txt.textContent=T.waiting.replace('{n}',t);
-
+      h += '<p class="d">'+T.clickToContinue+'</p>';
+      h += '<div class="prog" aria-hidden="true">';
+      for(var i=0;i<n;i++) h += '<u class="'+(i<clicks?'on':'')+'"></u>';
+      h += '</div>';
+      h += '<button class="btn" id="goBtn" type="button"><span id="goTxt">'+btnText(s)+'</span>'+IC.arrow+'</button>';
+      h += '<div class="hint" id="hint">'+T.clicks.replace('{n}',n)+'</div>';
     }
 
-  },1000);
-}
+    var c = document.getElementById('card');
+    c.className = 'card' + (s.final ? ' final' : '');
+    c.innerHTML = h;
 
-/* NEXT STEP */
+    var b = document.getElementById('goBtn');
+    if(b) b.addEventListener('click', onClick);
 
-function nextStep(){
-
-  clearInterval(timer);
-
-  cur++;
-  clicks=0;
-  busy=false;
-
-  renderStepper();
-  renderCard();
-  loadAds();
-
-  window.scrollTo({top:0,behavior:'smooth'});
-
-  if(cur===STEPS.length-1){
-    unlockTop();
+    var fb = document.getElementById('finalBtn');
+    if(fb) fb.addEventListener('click', attemptRevealCode);
   }
-}
 
-/* UNLOCK TOP BUTTON */
-
-function unlockTop(){
-
-  var a=document.getElementById('topDl');
-
-  a.disabled=false;
-  a.className='dl on';
-
-  document.getElementById('topDlTxt').textContent=T.download;
-}
-
-/* BASE64 CODE */
-
-function getCode(){
-
-  try{
-
-    var decoded=atob(CONFIG.codeB64);
-
-    // Supports UTF-8 text as well as ordinary English codes.
-    var bytes=Uint8Array.from(decoded,function(c){
-      return c.charCodeAt(0);
-    });
-
-    return new TextDecoder('utf-8').decode(bytes);
-
-  }catch(e){
-
-    return T.error;
-
+  function btnText(s){
+    if(clicks === 0) return T.continue;
+    return T.clickCount.replace('{current}',clicks).replace('{total}',CONFIG.clicksPerStep);
   }
-}
 
-/* CODE REVEAL */
+  var timer = null;
 
-function revealCode(){
+  function onClick(){
+    if(busy) return;
 
-  if(cur!==STEPS.length-1)return;
-  if(revealed)return;
+    try{ window.open(CONFIG.smart, '_blank'); }catch(e){}
 
-  var success=Math.floor(Math.random()*CONFIG.totalChance)===0;
+    clicks++;
+    var n = CONFIG.clicksPerStep;
+    var bars = document.querySelectorAll('.prog u');
 
-  if(success){
+    for(var i=0;i<bars.length;i++) bars[i].className = i < clicks ? 'on' : '';
 
-    revealed=true;
+    var btn = document.getElementById('goBtn');
+    var txt = document.getElementById('goTxt');
+    var hint = document.getElementById('hint');
 
-    var code=getCode();
-    var card=document.getElementById('card');
+    if(clicks >= n){
+      busy = true;
+      txt.textContent = T.moving;
+      setTimeout(nextStep, 700);
+      return;
+    }
 
-    card.innerHTML=
-      '<div class="pic">'+IC.dl+'</div>'+
-      '<h1>'+T.lucky+'</h1>'+
-      '<div class="code-box">'+
-      '<div id="revealedCode" class="code-success">'+
-      escapeHtml(code)+
-      '</div></div>'+
-      '<button type="button" class="btn" id="copyCode">'+
-      '<span>'+T.copy+'</span></button>';
+    busy = true;
+    btn.disabled = true;
+    btn.classList.add('wait');
 
-    document.getElementById('copyCode').addEventListener('click',function(){
+    var t = CONFIG.waitSeconds;
 
-      copyCode(code);
+    hint.textContent = clicks === n-1
+      ? T.remainingOne
+      : T.remainingMany.replace('{n}',n-clicks);
 
-    });
+    txt.textContent = T.waiting.replace('{n}',t);
 
-    var top=document.getElementById('topDl');
+    clearInterval(timer);
 
-    top.disabled=true;
-    top.className='dl';
+    timer = setInterval(function(){
+      t--;
 
-    document.getElementById('topDlTxt').textContent=T.copied;
+      if(t <= 0){
+        clearInterval(timer);
+        busy = false;
+        btn.disabled = false;
+        btn.classList.remove('wait');
+        txt.textContent = btnText();
+      }else{
+        txt.textContent = T.waiting.replace('{n}',t);
+      }
+    }, 1000);
+  }
+
+  function nextStep(){
+    clearInterval(timer);
+    cur++;
+    clicks = 0;
+    busy = false;
 
     renderStepper();
+    renderCard();
+    loadAds();
 
-  }else{
+    window.scrollTo({top:0,behavior:'smooth'});
 
-    var card=document.getElementById('card');
-
-    card.innerHTML=
-      '<div class="pic">'+IC.key+'</div>'+
-      '<h1>'+T.unlucky+'</h1>'+
-      '<p class="luck-message">'+T.retry+'</p>'+
-      '<button type="button" class="btn retry-btn" id="retryBtn">'+
-      '<span>'+T.retry+'</span></button>';
-
-    document.getElementById('retryBtn').addEventListener('click',retry);
-
+    if(cur === STEPS.length-1) unlockTop();
   }
-}
 
-/* COPY CODE */
+  function unlockTop(){
+    var a = document.getElementById('topDl');
+    a.disabled = false;
+    a.className = 'dl on';
+    document.getElementById('topDlTxt').textContent = T.download;
+  }
 
-function copyCode(code){
+  function lockTop(){
+    var a = document.getElementById('topDl');
+    a.disabled = true;
+    a.className = 'dl';
+    document.getElementById('topDlTxt').textContent = T.locked;
+  }
 
-  var btn=document.getElementById('copyCode');
+  function showCodeEverywhere(){
+    codeRevealed = true;
+    var box = document.getElementById('topCodeBox');
+    var val = document.getElementById('topCodeVal');
+    if(box && val){
+      box.classList.remove('blurred');
+      box.classList.add('revealed');
+      val.textContent = REAL_CODE;
+    }
+    var dlBtn = document.getElementById('topDl');
+    if(dlBtn) dlBtn.style.display = 'none';
+    renderCard();
+  }
 
-  if(navigator.clipboard && window.isSecureContext){
+  /* ---------- 1 in 500 Code Reveal ---------- */
+  function attemptRevealCode(){
+    if(cur !== STEPS.length-1) return;
+    var roll = Math.floor(Math.random() * CONFIG.revealChance) + 1;
+    if(roll === 1){
+      showCodeEverywhere();
+    }else{
+      lastLoseNotice = true;
+      cur = 0;
+      clicks = 0;
+      busy = false;
+      lockTop();
+      renderStepper();
+      renderCard();
+      loadAds();
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+  }
 
-    navigator.clipboard.writeText(code).then(function(){
-
-      btn.textContent=T.copied;
-
-    }).catch(function(){
-
-      fallbackCopy(code,btn);
-
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g,function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
     });
-
-  }else{
-
-    fallbackCopy(code,btn);
-
-  }
-}
-
-function fallbackCopy(code,btn){
-
-  var area=document.createElement('textarea');
-
-  area.value=code;
-  area.style.position='fixed';
-  area.style.opacity='0';
-
-  document.body.appendChild(area);
-
-  area.select();
-
-  try{
-
-    document.execCommand('copy');
-    btn.textContent=T.copied;
-
-  }catch(e){
-
-    btn.textContent=T.copy;
-
   }
 
-  area.remove();
-}
+  /* ---------- Init ---------- */
+  document.getElementById('fName').textContent = CONFIG.name;
+  document.getElementById('topCodeVal').textContent = REAL_CODE.replace(/./g, '•');
+  document.getElementById('sizeLabel').textContent = T.size;
+  document.title = T.title + ' - ' + CONFIG.name;
 
-/* RETRY */
+  document.getElementById('topDl').addEventListener('click', attemptRevealCode);
 
-function retry(){
+  document.getElementById('copyTopBtn').addEventListener('click', function(){
+    if(!codeRevealed) return;
+    var btn = this;
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(REAL_CODE).catch(function(){});
+    }
+    btn.textContent = T.copied;
+    setTimeout(function(){ btn.textContent = T.copy; }, 1500);
+  });
 
-  clearInterval(timer);
-
-  cur=0;
-  clicks=0;
-  busy=false;
-  revealed=false;
-
-  var top=document.getElementById('topDl');
-
-  top.disabled=true;
-  top.className='dl';
-
-  document.getElementById('topDlTxt').textContent=T.locked;
+  document.addEventListener('contextmenu', function(e){
+    if(e.target.closest && e.target.closest('.btn,.dl')) e.preventDefault();
+  });
 
   renderStepper();
   renderCard();
   loadAds();
-
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-/* HTML ESCAPE */
-
-function escapeHtml(s){
-
-  return String(s).replace(/[&<>"']/g,function(c){
-
-    return {
-      '&':'&amp;',
-      '<':'&lt;',
-      '>':'&gt;',
-      '"':'&quot;',
-      "'":'&#39;'
-    }[c];
-
-  });
-}
-
-/* INIT */
-
-document.getElementById('fName').textContent=CONFIG.name;
-document.getElementById('fSize').textContent=CONFIG.size;
-document.getElementById('sizeLabel').textContent=T.size;
-
-document.title=T.title+' - '+CONFIG.name;
-
-document.getElementById('topDl').addEventListener('click',function(){
-
-  if(cur===STEPS.length-1 && !revealed){
-    revealCode();
-  }
-
-});
-
-document.addEventListener('contextmenu',function(e){
-
-  if(e.target.closest && e.target.closest('.btn,.dl')){
-    e.preventDefault();
-  }
-
-});
-
-renderStepper();
-renderCard();
-loadAds();
-
-</script>
+  </script>
 </body>
 </html>
